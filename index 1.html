@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Ultimate</title>
+<!--CSS start's here-->
+<style>
+body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f4f8;
+      text-align: center;
+      padding: 20px;
+    }
+h1 {
+      color: darkblue;
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+p {
+      font-size: 18px;
+      color: #555555;
+      margin-bottom: 20px;
+    }
+</style>
+</head>
+<body>
+<h1>Best Randomizer</h1>
+<p>hehez.</p>
+<h2>Enter Student Names</h2>
+<textarea rows="5" cols="30" placeholder="Type one name per line"></textarea>
+<br>
+<!--dropdown-->
+<label for="numGroups">Number of Groups:</label>
+<select id="numGroups">
+ <option value="1">1</option>
+ <option value="2">2</option>
+ <option value="3">3</option>
+ <option value="4">4</option>
+ <option value="5">5</option>
+ <option value="6">6</option>
+ <option value="7">7</option>
+ <option value="8">8</option>
+ <option value="9">9</option>
+ <option value="10">10</option>
+ <option value="11">11</option>
+ <option value="12">12</option>
+ <option value="13">13</option>
+ <option value="14">14</option>
+ <option value="15">15</option>
+ </select>
+   <br><br> 
+   
+   
+ <button>Generate Groups</button>
+
+
+ <h2>Random Groups</h2>
+ <div id="groupOutput">
+ </div>
+ <script>
+const textarea = document.querySelector('textarea');
+const numGroupsSelect = document.getElementById('numGroups');
+const button = document.querySelector('button');
+const outputDiv = document.getElementById('groupOutput');
+button.addEventListener('click', () => {
+const names = textarea.value.split('\n').filter(name => name.trim() !== '');const numGroups = parseInt(numGroupsSelect.value);
+
+const shuffled = names.sort(() => Math.random() - 0.5);
+const groups = Array.from({ length: numGroups }, () => []);
+shuffled.forEach((name, index) => {
+  groups[index % numGroups].push(name);
+});
+outputDiv.innerHTML = ''; // clear previous groups
+groups.forEach((group, i) => {
+  const groupElem = document.createElement('p');
+  groupElem.textContent = `Group ${i + 1}: ${group.join(', ')}`;
+  outputDiv.appendChild(groupElem);
+});
+
+});
+</script>
+ </body>
+ </html>
+ 
